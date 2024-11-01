@@ -1,0 +1,15 @@
+services:
+  asterisk:
+    container_name: asterisk
+    build:
+      context: ./asterisk
+      network: host
+    ports:
+      - "5060:5060"
+      - "10000-20000:10000-20000"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      start_period: 5s
+      timeout: 20s
+      retries: 10
+    restart: always

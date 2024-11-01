@@ -1,0 +1,29 @@
+FROM debian:latest
+
+RUN apt update
+
+ADD https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz asterisk.tar.gz
+
+RUN tar -zxvf asterisk.tar.gz && \
+	mv asterisk-* asterisk && \
+	rm -f asterisk.tar.gz
+
+WORKDIR /asterisk
+
+RUN ./contrib/scripts/install_prereq install
+
+RUN ./configure && \
+	make -j$(nproc) && \
+	make install
+
+WORKDIR /
+
+COPY ./conf /etc/asterisk
+
+COPY ./tools/ /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/healthcheck.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["asterisk", "-f"]
