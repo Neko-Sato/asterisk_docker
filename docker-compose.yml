@@ -4,12 +4,14 @@ services:
     build:
       context: ./asterisk
       network: host
-    ports:
-      - "5060:5060"
-      - "10000-20000:10000-20000"
-    healthcheck:
-      test: ["CMD", "healthcheck.sh"]
-      start_period: 5s
-      timeout: 20s
-      retries: 10
+    network_mode: host
+    privileged: true
+    restart: always
+  lldpd:
+    container_name: lldpd
+    build:
+      context: ./lldpd
+      network: host
+    network_mode: host
+    privileged: true    
     restart: always
