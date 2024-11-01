@@ -12,9 +12,11 @@ WORKDIR /asterisk
 
 RUN ./contrib/scripts/install_prereq install
 
-RUN ./configure && \
+RUN ./configure --with-pjproject-bundled  && \
 	make -j$(nproc) && \
 	make install
+
+RUN make samples
 
 WORKDIR /
 
