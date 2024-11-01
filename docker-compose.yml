@@ -5,13 +5,4 @@ services:
       context: ./asterisk
       network: host
     network_mode: host
-    privileged: true
-    restart: always
-  lldpd:
-    container_name: lldpd
-    build:
-      context: ./lldpd
-      network: host
-    network_mode: host
-    privileged: true    
     restart: always
