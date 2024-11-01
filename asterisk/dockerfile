@@ -21,8 +21,6 @@ WORKDIR /
 COPY ./conf /etc/asterisk
 
 COPY ./tools/ /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/healthcheck.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
