@@ -23,5 +23,11 @@ COPY ./conf /etc/asterisk
 COPY ./tools/ /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+EXPOSE 5060/udp
+EXPOSE 5060/tcp
+EXPOSE 5061/tcp
+EXPOSE 5061/udp
+EXPOSE 10000-20000/udp
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["asterisk", "-f"]
