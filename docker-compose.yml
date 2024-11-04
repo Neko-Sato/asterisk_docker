@@ -4,5 +4,5 @@ services:
     build:
       context: ./asterisk
       network: host
-  network_mode: host  
+  network_mode: host
   restart: always
