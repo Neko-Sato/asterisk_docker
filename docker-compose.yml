@@ -3,5 +3,7 @@ services:
     container_name: asterisk
     build:
       context: ./asterisk
-    network_mode: host
     restart: always
+    network_mode: host
+    volumes:
+      - ./conf:/etc/asterisk
