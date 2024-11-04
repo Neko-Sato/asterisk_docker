@@ -18,10 +18,10 @@ RUN ./configure --with-pjproject-bundled  && \
 
 WORKDIR /
 
-COPY ./conf /etc/asterisk
-
-COPY ./tools/ /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+VOLUME ["/etc/asterisk"]
 
 EXPOSE 5060/udp
 EXPOSE 5060/tcp
