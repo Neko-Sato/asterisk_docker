@@ -16,6 +16,8 @@ RUN ./configure --with-pjproject-bundled  && \
 	make -j$(nproc) && \
 	make install
 
+RUN make samples
+
 WORKDIR /
 
 COPY ./conf /etc/asterisk
