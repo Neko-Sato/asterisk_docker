@@ -4,10 +4,5 @@ services:
     build:
       context: ./asterisk
       network: host
-    ports:
-      - "5060:5060/udp"
-      - "5060:5060/tcp"
-      - "5061:5061/tcp"
-      - "5061:5061/udp"
-      - "10000-20000:10000-20000/udp"
-    restart: always
+  network_mode: host  
+  restart: always
